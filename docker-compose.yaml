@@ -1,0 +1,21 @@
+services:
+  app:
+    image: 'contas-teste-docker:latest'
+    build:
+      context: .
+    container_name: app
+    depends_on:
+      - postgres
+    ports:
+      - '8080:8080'
+  postgres:
+    image: 'postgres:15.2'
+    container_name: 'postgres'
+    ports:
+      - '5432:5432'
+    environment:
+      - 'POSTGRES_USER=contas'
+      - 'POSTGRES_DB=contas'
+      - 'POSTGRES_PASSWORD=contas'
+    volumes:
+      - /home/rogerio/workspace/volumes/postgres-15.2
